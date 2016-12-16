@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+function countWordIn(string, word) {
+  var lcWord = word.toLowerCase();
+  var words = string.toLowerCase()
+                    .replace(/[^a-z ]/g, '')
+                    .split(/ +/);
+  var matchedWords = words.filter(
+    function isWord(aWord) {
+      return aWord === lcWord;
+    }
+  );
+
+  return matchedWords.length;
+}
+
+/* eslint-disable no-magic-numbers */
+/* eslint-disable vars-on-top */
+/* global show, log, theEnd */
+
+var text = 'The quick brown fox jumps over the lazy dog.';
+log(countWordIn(text, 'the'), 2);
+log(countWordIn(text, 'dog'), 1);
+log(countWordIn(text, 'cat'), 0);
+theEnd();
+    </script>
+  </body>
+</html>

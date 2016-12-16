@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+function capitalize(string) {
+  var resultArray = string.split(/ +/).map(
+    function capitalizeWord(word) {
+      return word[0].toUpperCase() + word.slice(1);
+    }
+  );
+
+  return resultArray.join(' ');
+}
+
+/* eslint-disable no-magic-numbers */
+/* eslint-disable vars-on-top */
+/* global show, log, theEnd */
+
+var text = 'The quick brown fox jumps over the lazy dog.';
+log(capitalize(text), 'The Quick Brown Fox Jumps Over The Lazy Dog.');
+theEnd();
+    </script>
+  </body>
+</html>
