@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+var firstName = 'Pete';
+var lastName = 'Hanson';
+var fullName = firstName + ' ' + lastName;
+show(fullName);
+show(firstName.concat(lastName));
+
+var nameParts = fullName.split(' ');
+show(nameParts);
+
+var language = 'JavaScript';
+var idx = language.indexOf('S');
+log(idx, 4);
+
+var charCode = language.charCodeAt(4);
+log(charCode, 83);
+log(String.fromCharCode(charCode), 'S');
+log(language.lastIndexOf('a'), 3);
+
+var a = 'a';
+var b = 'b';
+log(a > b, false);
+b = 'B';
+log(a > b, true);
+
+var aIndex = language.indexOf('a');
+var vIndex = language.indexOf('v');
+log(language.substr(aIndex, 4), 'avaS');
+log(language.substr(vIndex, 4), 'vaSc');
+
+theEnd();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+function getName() {
+  return prompt('What is your name?');
+}
+
+function screaming(string) {
+  return string.endsWith('!');
+}
+
+function sayHello(usersName) {
+  var screamingName;
+  if (screaming(usersName)) {
+    screamingName = usersName.slice(0, -1).toUpperCase();
+    show('HELLO ' + screamingName + '. WHY ARE WE SCREAMING?');
+  } else {
+    show('Hello ' + usersName);
+  }
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+sayHello(getName());
+theEnd();
+    </script>
+  </body>
+</html>
