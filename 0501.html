@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+function isValidEmail(email) {
+  return Boolean(email.match(/^[a-z0-9]+@([a-z]+\.)+[a-z]+$/i));
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+log(isValidEmail('Foo@baz.com.ph'),  true);
+log(isValidEmail('Foo@delta.baz.com.ph'),  true);
+log(isValidEmail('foo@baz.com'),     true);
+log(isValidEmail('foo@baz.ph'),      true);
+log(isValidEmail('HELLO123@baz'),    false);
+log(isValidEmail('foo.bar@baz.to'),  false);
+log(isValidEmail('foo@baz.'),        false);
+log(isValidEmail('foo_bat@baz'),     false);
+log(isValidEmail('foo@bar.a12'),     false);
+log(isValidEmail('foo_bar@baz.com'), false);
+log(isValidEmail('foo@bar.....com'), false);
+theEnd();
+    </script>
+  </body>
+</html>

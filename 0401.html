@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+function acronym(string) {
+  function firstLetter(word) {
+    return word[0].toUpperCase();
+  }
+
+  return string.split(/[- ]/).map(firstLetter).join('');
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+log(acronym('Portable Network Graphics'),               'PNG');
+log(acronym('First In, First Out'),                     'FIFO');
+log(acronym('PHP: HyperText Preprocessor'),             'PHP');
+log(acronym('Complementary metal-oxide semiconductor'), 'CMOS');
+log(acronym('Hyper-text Markup Language'),              'HTML');
+theEnd();
+    </script>
+  </body>
+</html>
