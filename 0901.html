@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>var data;</script>
+    <script src="0901.js"></script>
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+function mailCount(emailData) {
+  var messages = emailData.split('##||##');
+  var dateTimeStrings = messages.map(
+    function parseDate(message) {
+      var parts = message.split('#/#');
+      return parts[2];
+    }
+  );
+
+  var dateHash = {};
+  dateTimeStrings.map(
+    function toDateHash(dateTime) {
+      show(dateTime);
+    }
+  );
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+mailCount(data);
+
+theEnd();
+
+    </script>
+  </body>
+</html>

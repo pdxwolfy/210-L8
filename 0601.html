@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+
+// set counter to 0
+// moving from left to right in the string
+//   if character is ')'
+//     if counter is 0
+//       return false
+//     decrement counter
+//   else if character is '('
+//     increment character
+// if counter === 0
+//   return true
+// return false
+function isBalanced(string) {
+  var nestingValue = function nestingValue(character) {
+    switch (character) {
+      case '(':
+        return 1;
+      case ')':
+        return -1;
+      default:
+        return 0;
+    }
+  };
+
+  var nestingLevel = 0;
+  var characters = string.split('');
+  var index;
+
+  for (index = 0; index < characters.length; ++index) {
+    nestingLevel += nestingValue(characters[index]);
+    if (nestingLevel < 0) {
+      return false;
+    }
+  }
+
+  return nestingLevel === 0;
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+log(isBalanced('What (is) this?'),      true);
+log(isBalanced('What is) this?'),       false);
+log(isBalanced('What (is this?'),       false);
+log(isBalanced('((What) (is this))?'),  true);
+log(isBalanced('((What)) (is this))?'), false);
+log(isBalanced('Hey!'),                 true);
+log(isBalanced(')Hey!('),               false);
+log(isBalanced('What ((is))) up('),     false);
+theEnd();
+    </script>
+  </body>
+</html>

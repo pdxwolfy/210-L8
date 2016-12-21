@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>var data;</script>
+    <script src="0902.js"></script>
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+var MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+function mailCount(emailData) {
+  var messages;
+  var dates;
+  var dateRange;
+
+  function parseDate(message) {
+    var parts = message.split('#/#');
+    var parsedDate = parts[2].replace('Date: ', '').split('-');
+    var month = parseInt(parsedDate[0], 10) - 1;
+    var day = parseInt(parsedDate[1], 10);
+    var year = parseInt(parsedDate[2], 10);
+    return new Date(year, month, day);
+  }
+
+  function byDate(first, second) {
+    return first - second;
+  }
+
+  function formatDate(date) {
+    var month = MONTHS[date.getMonth()];
+    var day = String(date.getDate());
+    var year = String(date.getYear() + 1900);
+
+    return month + day + ' ' + year;
+  }
+
+  function formattedDateRange(sortedDates) {
+    var earliestDate = sortedDates[0];
+    var latestDate = sortedDates[sortedDates.length - 1];
+
+    return formatDate(earliestDate) + ' - ' + formatDate(latestDate);
+  }
+
+  messages = emailData.split('##||##');
+  dates = messages.map(parseDate).sort(byDate);
+  dateRange = formattedDateRange(dates);
+
+  show('Count of Email: ' + String(messages.length));
+  show('Date range: ' + dateRange);
+}
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+mailCount(data);
+
+theEnd();
+
+    </script>
+  </body>
+</html>

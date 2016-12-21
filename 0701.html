@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="assert.js"></script>
+  </head>
+
+  <body>
+    <pre id="console">
+    </pre>
+
+    <script>
+'use strict';
+
+/* global show, log, theEnd */
+
+var positiveWords = ['fortune', 'dream', 'love', 'respect', 'patience', 'devout', 'noble', 'resolution'];
+var negativeWords = ['die', 'heartache', 'death', 'despise', 'scorn', 'weary', 'trouble', 'oppress'];
+var textExcerpt = 'To be or not to be-that is the question:\n' +
+  'Whether \'tis nobler in the mind to suffer\n' +
+  'The slings and arrows of outrageous fortune,\n' +
+  'Or to take arms against a sea of troubles,\n' +
+  'And, by opposing, end them. To die, to sleep-\n' +
+  'No more-and by a sleep to say we end\n' +
+  'The heartache and the thousand natural shocks\n' +
+  'That flesh is heir to-\'tis a consummation\n' +
+  'Devoutly to be wished. To die, to sleep-\n' +
+  'To sleep, perchance to dream. Aye, there\'s the rub,\n' +
+  'For in that sleep of death what dreams may come,\n' +
+  'When we have shuffled off this mortal coil,\n' +
+  'Must give us pause. There\'s the respect\n' +
+  'That makes calamity of so long life.\n' +
+  'For who would bear the whips and scorns of time,\n' +
+  'Th\' oppressor\'s wrong, the proud man\'s contumely, [F: poor]\n' +
+  'The pangs of despised love, the law’s delay, [F: disprized]\n' +
+  'The insolence of office, and the spurns\n' +
+  'That patient merit of the unworthy takes,\n' +
+  'When he himself might his quietus make\n' +
+  'With a bare bodkin? Who would fardels bear, [F: these Fardels]\n' +
+  'To grunt and sweat under a weary life,\n' +
+  'But that the dread of something after death,\n' +
+  'The undiscovered country from whose bourn\n' +
+  'No traveler returns, puzzles the will\n' +
+  'And makes us rather bear those ills we have\n' +
+  'Than fly to others that we know not of?\n' +
+  'Thus conscience does make cowards of us all,\n' +
+  'And thus the native hue of resolution\n' +
+  'Is sicklied o\'er with the pale cast of thought,\n' +
+  'And enterprises of great pitch and moment, [F: pith]\n' +
+  'With this regard their currents turn awry, [F: away]\n' +
+  'And lose the name of action.-Soft you now,\n' +
+  'The fair Ophelia.-Nymph, in thy orisons\n' +
+  'Be all my sins remembered';
+
+/* eslint-disable vars-on-top */
+/* eslint-disable no-magic-numbers */
+
+var NEGATIVE = 'Negative';
+var POSITIVE = 'Positive';
+var NEUTRAL = 'Neutral';
+
+function sentiment(text) {
+  // Split text into words
+  var words = text.toLowerCase().split(/[^a-z']+/);
+
+  // Get list of words that appear in positive/negative words lists
+  var inList = function inList(word, list) {
+    return list.indexOf(word) > -1;
+  };
+
+  var positiveSentiments = words.filter(
+    function inPositiveWords(word) {
+      return inList(word, positiveWords);
+    }
+  );
+
+  var negativeSentiments = words.filter(
+    function inNegativeWords(word) {
+      return inList(word, negativeWords);
+    }
+  );
+
+  // Print resuls
+
+  function summarize(sentiments, polarity) {
+    var count = String(sentiments.length);
+    var lcPolarity = polarity.toLowerCase();
+
+    show('There are ' + count + ' ' + lcPolarity + ' words in the text.');
+    show(polarity + ' sentiments: ' + sentiments.join(', '));
+    show('');
+  }
+
+  function overallSentiment() {
+    var countPositive = positiveSentiments.length;
+    var countNegative = negativeSentiments.length;
+    var result;
+
+    if (countPositive > countNegative) {
+      result = POSITIVE;
+    } else if (countPositive < countNegative) {
+      result = NEGATIVE;
+    } else {
+      result = NEUTRAL;
+    }
+
+    show('The sentiment of the text is ' + result + '.');
+  }
+
+  summarize(positiveSentiments, POSITIVE);
+  summarize(negativeSentiments, NEGATIVE);
+  overallSentiment();
+}
+
+sentiment(textExcerpt);
+
+theEnd();
+    </script>
+  </body>
+</html>
