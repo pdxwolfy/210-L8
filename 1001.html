@@ -40,23 +40,21 @@ var longText = 'Four score and seven years ago our fathers brought forth' +
   ' the people, for the people, shall not perish from the' +
   ' earth.';
 
+function wordCount(sentence) {
+  return sentence.split(/\s+/).length;
+}
+
 function longestSentence(text) {
-  var sentences = text.match(/[^.!?]+[.!?]\s*/g).map(
-    function trimRight(string) {
-      return string.trimRight();
-    }
-  );
-
+  var sentences = text.match(/[^.!?]+[.!?]\s*/g);
   var longest = sentences.reduce(
-    function longest(currentLongest, string) {
-      return string.length > currentLongest.length ? string : currentLongest;
+    function mostWords(result, string) {
+      return wordCount(string) > wordCount(result) ? string : result;
     }
   );
-
-  var wordCount = longest.split(/\s+/).length;
 
   console.log(longest);
-  console.log('The longest sentence has ' + String(wordCount) + ' words.');
+  console.log('The longest sentence has ' + String(wordCount(longest)) +
+              ' words.');
 }
 
 longestSentence(longText);
